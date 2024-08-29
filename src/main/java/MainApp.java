@@ -2,6 +2,6 @@
 
 public class MainApp {
     public static void main(String[] args) {
-        System.out.println("Acum");
+        System.out.println("Acum test branch petru");
     }
 }
