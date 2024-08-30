@@ -1,9 +1,11 @@
 package enums;
 
 public enum Social {
-    PUPIL, // up to age 14
+    // CHILD
+    PUPIL, // 7 up to age 14
     STUDENT, // up to 21
+    // ADULT
     EMPLOYEE, // up to 65
-    RENTER // no limit
-
+    RETIRED, // from 66
+    // SENIOR
 }
