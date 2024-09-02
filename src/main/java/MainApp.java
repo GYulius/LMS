@@ -1,7 +1,8 @@
-
+import util.LibraryCli;
 
 public class MainApp {
     public static void main(String[] args) {
-        System.out.println("Acum");
+        LibraryCli library = new LibraryCli();
+        library.startLibraryCli();
     }
 }
