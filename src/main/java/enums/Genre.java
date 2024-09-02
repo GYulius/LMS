@@ -1,7 +1,7 @@
 package enums;
 
 public enum Genre {
-    // A_GENERAL_WORKS
+    A_GENERAL_WORKS,
 
     AC_Collections_Series,
     AC1_Collections_of_monographs, _essays,
@@ -26,7 +26,7 @@ public enum Genre {
     AZ2_Philosophy_and_theory_of_learning,
     AZ3_Evaluation_history,
 
-    //   B_PHILOSOPHY_PSYCHOLOGY
+    B_PHILOSOPHY_PSYCHOLOGY,
 
     B1_Philosophy_General,
     BC_Logic,
@@ -63,7 +63,7 @@ public enum Genre {
 
     BH1_Aesthetics,
 
-    // BJ_Ethics
+    BJ_Ethics,
     BJ1_History_of,
     BJ2_Religious_ethics,
     BJ3_Evolutionary_and_genetic_ethics,
@@ -76,7 +76,7 @@ public enum Genre {
     BJ10_Ethics_of_social_groups_classes,
     BJ11_Social_usages_Etiquette,
 
-    // C_AUXILIARY_SCIENCES_OF_HISTORY
+    C_AUXILIARY_SCIENCES_OF_HISTORY,
 
     CB1_History_of_Civilization,
     CB2_Terrestrial_evidence_of_interplanetary_voyages,
@@ -86,13 +86,13 @@ public enum Genre {
     CB6_War_and_civilization,
     CB7_Water_and_civilization,
 
-    // CC_Archaeology_and_Antiques
+    CC_Archaeology_and_Antiques,
     CC1_Archaeology_Theory_Methods_Preservation,
     CC2_Forgeries_of_antiquities,
     CC3_Stone_heaps_cairns_of_unknown_purpose,
     CC4_Hill_figures,
 
-    //CD_Diplomacy
+    CD_Diplomacy,
     CD1_Diplomatics,
     CD2_Archives,
     CD3_History_and_statistics,
@@ -102,22 +102,22 @@ public enum Genre {
     CE1_Technical_Chronology,
     CE2_Calendar,
 
-    //    CJ_Numismatics,
+    CJ_Numismatics,
     CJ1_Coins,
     CJ2_Tokens,
     CJ3_Medals_and_medallions,
 
-    //    CN_Inscriptions
+    CN_Inscriptions,
     CN1_Epigraphy,
     CN2_Ancient_inscriptions,
     CN3_Medieval_inscriptions,
     CN4_Modern_inscriptions,
 
-    // CR_Heraldry
+    CR_Heraldry,
     CR1_Crests_monograms_devices_badges_mottoes,
     CR2_Shields_and_supporters,
 
-    //   CS_Genealogy
+    CS_Genealogy,
     CS1_Genealogical_lists,
     CS2_Family_history_covering_more_than_one_country,
 
@@ -125,7 +125,7 @@ public enum Genre {
     CT1_Biography_as_an_art_or_literary_form,
     // CT2	History_of_biographical_literature_Lives_of_biographers,
 
-    // D_WHOLISTIC_AND_ALTERNATIVE_SCIENCES_PARANORMAL
+    D_WHOLISTIC_AND_ALTERNATIVE_SCIENCES_PARANORMAL,
 
     //     DA_Approaches_to_solve_ages_old_problems
     DA1_Different_thinking,

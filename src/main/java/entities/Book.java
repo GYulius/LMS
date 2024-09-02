@@ -1,11 +1,13 @@
 package entities;
 
 import enums.Genre;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Table(name = "books")
 @Getter
@@ -25,5 +27,6 @@ public class Book {
 
     private String description;
 
-    // metode
+
+
 }
