@@ -56,17 +56,64 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public void editBookRecord() {
+    public void editBookRecord(Scanner scanner) {
+
+        System.out.println("Please provide the number of the book record you want to edit: ");
+
+        int bookId = Integer.parseInt(scanner.nextLine());
+
+        Book foundBook = bookRepository.findBookById(bookId);
+
+        if(foundBook != null) {
+            System.out.println("The following record has been found:" + "\n" + foundBook.getId() + "\n" + foundBook.getTitle() + "\n" + foundBook.getAuthor() + "\n" + foundBook.getGenre() + "\n" + foundBook.getDescription());
+            System.out.println("Please provide the new description: ");
+            String newDescription = scanner.nextLine();
+
+            foundBook.setDescription(newDescription);
+
+            bookRepository.updateBook(foundBook);
+
+            System.out.println("Book record updated successfully. The new description is: " + newDescription);
+
+        } else {
+            System.out.println("Book not found, please provide an new Book ID.");
+        }
+    }
+
+    @Override
+    public void viewBookRecord(Scanner scanner) {
+        System.out.println("Please provide the number of the book record you want to view: ");
+
+        int bookId = Integer.parseInt(scanner.nextLine());
+
+        Book foundBook = bookRepository.findBookById(bookId);
+
+        if(foundBook != null) {
+            System.out.println(foundBook);
+        } else {
+            System.out.println("Book not found, please provide an new Book ID.");
+        }
 
     }
 
     @Override
-    public void viewBookRecord() {
+    public void deleteBookRecord(Scanner scanner) {
+        System.out.println("Please provide the number of the book record you want to delete: ");
 
-    }
+        int bookId = Integer.parseInt(scanner.nextLine());
 
-    @Override
-    public void deleteBookRecord() {
+        Book foundBook = bookRepository.findBookById(bookId);
 
+        if(foundBook != null) {
+            System.out.println("The following record has been found:" + "\n" + foundBook.getId() + "\n" + foundBook.getTitle() + "\n" + foundBook.getAuthor() + "\n" + foundBook.getGenre() + "\n" + foundBook.getDescription());
+            // TODO  - System.out.println("Please confirm the deletion: ");
+
+            bookRepository.deleteBook(foundBook.getId());
+
+            System.out.println("Book record deleted successfully.");
+
+        } else {
+            System.out.println("Book not found, please provide an new Book ID.");
+        }
     }
 }

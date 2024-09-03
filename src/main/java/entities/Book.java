@@ -1,9 +1,7 @@
 package entities;
 
 import enums.Genre;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +11,9 @@ import java.util.List;
 @Table(name = "books")
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Id
@@ -28,7 +29,7 @@ public class Book {
 
     private String description;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Loan> loans;
 
 

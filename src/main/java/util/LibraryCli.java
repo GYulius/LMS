@@ -38,19 +38,19 @@ public class LibraryCli {
                 memberService.insertMember(scanner);
                 break;
             case 3:
-                bookService.editBookRecord();
+                bookService.editBookRecord(scanner);
                 break;
             case 4:
                 memberService.editMemberRecord();
                 break;
             case 5:
-                bookService.viewBookRecord();
+                bookService.viewBookRecord(scanner);
                 break;
             case 6:
                 memberService.viewMemberRecord();
                 break;
             case 7:
-                bookService.deleteBookRecord();
+                bookService.deleteBookRecord(scanner);
                 break;
             case 8:
                 memberService.deleteMemberRecord();
