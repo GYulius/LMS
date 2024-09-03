@@ -4,13 +4,15 @@ import entities.Book;
 import enums.Genre;
 import repositories.BookRepository;
 
+import java.util.List;
 import java.util.Scanner;
 
 
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository = new BookRepository();
+
     public static void displayAllGenres() {
-        for (Genre genre : Genre.values()){
+        for (Genre genre : Genre.values()) {
             System.out.println(genre.toString());
         }
     }
@@ -64,7 +66,7 @@ public class BookServiceImpl implements BookService{
 
         Book foundBook = bookRepository.findBookById(bookId);
 
-        if(foundBook != null) {
+        if (foundBook != null) {
             System.out.println("The following record has been found:" + "\n" + foundBook.getId() + "\n" + foundBook.getTitle() + "\n" + foundBook.getAuthor() + "\n" + foundBook.getGenre() + "\n" + foundBook.getDescription());
             System.out.println("Please provide the new description: ");
             String newDescription = scanner.nextLine();
@@ -88,7 +90,7 @@ public class BookServiceImpl implements BookService{
 
         Book foundBook = bookRepository.findBookById(bookId);
 
-        if(foundBook != null) {
+        if (foundBook != null) {
             System.out.println(foundBook);
         } else {
             System.out.println("Book not found, please provide an new Book ID.");
@@ -104,7 +106,7 @@ public class BookServiceImpl implements BookService{
 
         Book foundBook = bookRepository.findBookById(bookId);
 
-        if(foundBook != null) {
+        if (foundBook != null) {
             System.out.println("The following record has been found:" + "\n" + foundBook.getId() + "\n" + foundBook.getTitle() + "\n" + foundBook.getAuthor() + "\n" + foundBook.getGenre() + "\n" + foundBook.getDescription());
 
             bookRepository.deleteBook(foundBook.getId());
@@ -113,6 +115,32 @@ public class BookServiceImpl implements BookService{
 
         } else {
             System.out.println("Book not found, please provide an new Book ID.");
+        }
+
+
+    }
+
+    @Override
+    public void searchBookByGenre(Scanner scanner) {
+        System.out.println("Please choose the desired genre of the book from below to get search results.");
+
+        displayAllGenres();
+        System.out.println("Please check our genre list and then choose the genre for your book.");
+
+        Genre desiredGenre = null;
+
+        while (desiredGenre == null) {
+            String chosenGenre = scanner.nextLine();
+            try {
+                desiredGenre = Genre.valueOf(chosenGenre);
+                System.out.println(desiredGenre + " chosen as genre" + "\n");
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("No books on selected genre. Review our genre list and provide a new one" + "\n");
+
+            }
+
+           // List<Book> retrievedBooks = bookRepository.getFilteredBooksByGenre(desiredGenre);
         }
     }
 }

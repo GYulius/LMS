@@ -11,7 +11,7 @@ import java.util.List;
 @Table(name = "books")
 @Getter
 @Setter
-@Data
+// @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
@@ -29,9 +29,18 @@ public class Book {
 
     private String description;
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Loan> loans;
 
-
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", genre=" + genre +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

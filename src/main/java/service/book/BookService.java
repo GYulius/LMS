@@ -7,4 +7,5 @@ public interface BookService {
     void editBookRecord(Scanner scanner);
     void viewBookRecord(Scanner scanner);
     void deleteBookRecord(Scanner scanner);
+    void searchBookByGenre(Scanner scanner);
 }

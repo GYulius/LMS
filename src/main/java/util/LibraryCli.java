@@ -56,6 +56,9 @@ public class LibraryCli {
                 memberService.deleteMemberRecord(scanner);
                 break;
             case 9:
+                bookService.searchBookByGenre(scanner);
+                break;
+            case 10:
                 System.out.println("Exiting the Library Application");
                 System.exit(0);
                 break;
