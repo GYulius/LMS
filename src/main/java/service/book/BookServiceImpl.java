@@ -40,10 +40,15 @@ public class BookServiceImpl implements BookService{
 
             }
         }
+
+        System.out.println("Please enter the description");
+        String description = scanner.nextLine();
+
         Book addedBook = Book.builder()
                 .title(title)
                 .author(author)
                 .genre(genre)
+                .description(description)
                 .build();
         bookRepository.saveBook(addedBook);
         System.out.println("Book " + addedBook.getTitle() + " inserted successfully");
