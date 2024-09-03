@@ -14,51 +14,8 @@ public class LibraryCli {
     public void startLibraryCli() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("1. Add a book");
-            System.out.println("2. Add a member");
-            System.out.println("3. Edit a book record");
-            System.out.println("4. Edit a member record");
-            System.out.println("5. View a book record");
-            System.out.println("6. View a member record");
-            System.out.println("7. Delete a book record");
-            System.out.println("8. Delete a member record");
-            System.out.println("9. Exit menu");
-
-            int userChoice = Integer.parseInt(scanner.nextLine());
-
-            switch(userChoice) {
-                case 1:
-                    insertBook(scanner);
-                    break;
-                case 2:
-                    insertMember();
-                    break;
-                case 3:
-                    editBookRecord();
-                    break;
-                case 4:
-                    editMemberRecord();
-                    break;
-                case 5:
-                    viewBookRecord();
-                    break;
-                case 6:
-                    viewMemberRecord();
-                    break;
-                case 7:
-                    deleteBookRecord();
-                    break;
-                case 8:
-                    deleteMemberRecord();
-                    break;
-                case 9:
-                    System.out.println("Exiting the Library Application");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Not a valid option. Try again after checking our manual");
-            }
-
+            displayMenu();
+            executeUserChoiceAction(scanner);
         }
     }
 
@@ -82,7 +39,7 @@ public class LibraryCli {
                 System.out.println(genre + " chosen as genre" + "\n");
 
             } catch (IllegalArgumentException e) {
-                System.out.println("Review our genre list" + "\n");
+                System.out.println(" Invalid genre. Review our genre list and provide a new one" + "\n");
 
             }
         }
@@ -92,12 +49,11 @@ public class LibraryCli {
                 .genre(genre)
                 .build();
         bookRepository.saveBook(addedBook);
-        System.out.println("Book " + addedBook.getTitle() + " inserted succesfully");
+        System.out.println("Book " + addedBook.getTitle() + " inserted successfully");
 
     }
 
     public static void displayAllGenres() {
-
         for (Genre genre : Genre.values()){
             System.out.println(genre.toString());
         }
@@ -129,5 +85,51 @@ public class LibraryCli {
 
     public void deleteMemberRecord(){
 
+    }
+    public void displayMenu() {
+        System.out.println("1. Add a book");
+        System.out.println("2. Add a member");
+        System.out.println("3. Edit a book record");
+        System.out.println("4. Edit a member record");
+        System.out.println("5. View a book record");
+        System.out.println("6. View a member record");
+        System.out.println("7. Delete a book record");
+        System.out.println("8. Delete a member record");
+        System.out.println("9. Exit menu");
+    }
+    private void executeUserChoiceAction(Scanner scanner) {
+        int userChoice = Integer.parseInt(scanner.nextLine());
+        switch(userChoice) {
+            case 1:
+                insertBook(scanner);
+                break;
+            case 2:
+                insertMember();
+                break;
+            case 3:
+                editBookRecord();
+                break;
+            case 4:
+                editMemberRecord();
+                break;
+            case 5:
+                viewBookRecord();
+                break;
+            case 6:
+                viewMemberRecord();
+                break;
+            case 7:
+                deleteBookRecord();
+                break;
+            case 8:
+                deleteMemberRecord();
+                break;
+            case 9:
+                System.out.println("Exiting the Library Application");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Not a valid option. Try again after checking command line available options");
+        }
     }
 }
