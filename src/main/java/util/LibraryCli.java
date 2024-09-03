@@ -2,12 +2,13 @@ package util;
 
 import repositories.MemberRepository;
 import service.book.BookServiceImpl;
+import service.member.MemberServiceImpl;
 
 import java.util.Scanner;
 
 public class LibraryCli {
     private final BookServiceImpl bookService = new BookServiceImpl();
-    private final MemberRepository memberRepository = new MemberRepository();
+    private final MemberServiceImpl memberService = new MemberServiceImpl();
 
     public void startLibraryCli() {
         Scanner scanner = new Scanner(System.in);
@@ -15,26 +16,6 @@ public class LibraryCli {
             displayMenu();
             executeUserChoiceAction(scanner);
         }
-    }
-    public void insertMember(){
-
-    }
-    public void editBookRecord(){
-
-    }
-    public void editMemberRecord(){
-
-    }
-    public void viewBookRecord(){
-
-    }
-    public void viewMemberRecord(){
-
-    }
-    public void deleteBookRecord(){
-
-    }
-    public void deleteMemberRecord(){
     }
     public void displayMenu() {
         System.out.println("1. Add a book");
@@ -54,25 +35,25 @@ public class LibraryCli {
                 bookService.insertBook(scanner);
                 break;
             case 2:
-                insertMember();
+                memberService.insertMember(scanner);
                 break;
             case 3:
-                editBookRecord();
+                bookService.editBookRecord();
                 break;
             case 4:
-                editMemberRecord();
+                memberService.editMemberRecord();
                 break;
             case 5:
-                viewBookRecord();
+                bookService.viewBookRecord();
                 break;
             case 6:
-                viewMemberRecord();
+                memberService.viewMemberRecord();
                 break;
             case 7:
-                deleteBookRecord();
+                bookService.deleteBookRecord();
                 break;
             case 8:
-                deleteMemberRecord();
+                memberService.deleteMemberRecord();
                 break;
             case 9:
                 System.out.println("Exiting the Library Application");

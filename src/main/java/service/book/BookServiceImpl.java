@@ -49,4 +49,19 @@ public class BookServiceImpl implements BookService{
         System.out.println("Book " + addedBook.getTitle() + " inserted successfully");
 
     }
+
+    @Override
+    public void editBookRecord() {
+
+    }
+
+    @Override
+    public void viewBookRecord() {
+
+    }
+
+    @Override
+    public void deleteBookRecord() {
+
+    }
 }
