@@ -1,11 +1,12 @@
 package entities;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
+@Builder
 @Entity
 @Table(name = "loans")
 @Getter
@@ -20,7 +21,13 @@ public class Loan {
 
     private LocalDate returnDate;
 
-    // metods
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
 
 
