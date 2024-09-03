@@ -12,6 +12,7 @@
         <property name="hbm2ddl.auto">create</property>
 
         <mapping class="entities.Book"/>
-
+        <mapping class="entities.Member"/>
+        <mapping class="entities.Loan"/>
     </session-factory>
 </hibernate-configuration>
