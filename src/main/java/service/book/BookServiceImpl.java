@@ -106,7 +106,6 @@ public class BookServiceImpl implements BookService{
 
         if(foundBook != null) {
             System.out.println("The following record has been found:" + "\n" + foundBook.getId() + "\n" + foundBook.getTitle() + "\n" + foundBook.getAuthor() + "\n" + foundBook.getGenre() + "\n" + foundBook.getDescription());
-            // TODO  - System.out.println("Please confirm the deletion: ");
 
             bookRepository.deleteBook(foundBook.getId());
 
