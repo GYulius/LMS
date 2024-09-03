@@ -486,5 +486,9 @@ public enum Genre {
     V5_Information_resources_General,
     V6_Information_in_specific_formats_or_media,
     V7_Motion_pictures_Video_recordings_Sound_recordings,
-    V8_Government_information
+    V8_Government_information,
+    FICTION,
+    NON_FICTION,
+    DRAMA,
+    ANIME
 }
