@@ -1,14 +1,12 @@
 package util;
 
-import entities.Book;
-import enums.Genre;
-import repositories.BookRepository;
 import repositories.MemberRepository;
+import service.book.BookServiceImpl;
 
 import java.util.Scanner;
 
 public class LibraryCli {
-    private final BookRepository bookRepository = new BookRepository();
+    private final BookServiceImpl bookService = new BookServiceImpl();
     private final MemberRepository memberRepository = new MemberRepository();
 
     public void startLibraryCli() {
@@ -18,73 +16,25 @@ public class LibraryCli {
             executeUserChoiceAction(scanner);
         }
     }
-
-    public void insertBook(Scanner scanner){
-
-        System.out.println("Please provide a title");
-        String title = scanner.nextLine();
-
-        System.out.println("Please enter the author of the book");
-        String author = scanner.nextLine();
-
-        displayAllGenres();
-        System.out.println("Please check our genre list and then choose the genre for your book.");
-
-        Genre genre = null;
-
-        while (genre == null) {
-            String chosenGenre = scanner.nextLine();
-            try {
-                genre = Genre.valueOf(chosenGenre);
-                System.out.println(genre + " chosen as genre" + "\n");
-
-            } catch (IllegalArgumentException e) {
-                System.out.println(" Invalid genre. Review our genre list and provide a new one" + "\n");
-
-            }
-        }
-        Book addedBook = Book.builder()
-                .title(title)
-                .author(author)
-                .genre(genre)
-                .build();
-        bookRepository.saveBook(addedBook);
-        System.out.println("Book " + addedBook.getTitle() + " inserted successfully");
-
-    }
-
-    public static void displayAllGenres() {
-        for (Genre genre : Genre.values()){
-            System.out.println(genre.toString());
-        }
-    }
-
     public void insertMember(){
 
     }
-
     public void editBookRecord(){
 
     }
-
     public void editMemberRecord(){
 
     }
-
     public void viewBookRecord(){
 
     }
-
     public void viewMemberRecord(){
 
     }
-
     public void deleteBookRecord(){
 
     }
-
     public void deleteMemberRecord(){
-
     }
     public void displayMenu() {
         System.out.println("1. Add a book");
@@ -101,7 +51,7 @@ public class LibraryCli {
         int userChoice = Integer.parseInt(scanner.nextLine());
         switch(userChoice) {
             case 1:
-                insertBook(scanner);
+                bookService.insertBook(scanner);
                 break;
             case 2:
                 insertMember();
