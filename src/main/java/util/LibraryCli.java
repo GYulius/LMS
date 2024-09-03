@@ -41,19 +41,19 @@ public class LibraryCli {
                 bookService.editBookRecord(scanner);
                 break;
             case 4:
-                memberService.editMemberRecord();
+                memberService.editMemberRecord(scanner);
                 break;
             case 5:
                 bookService.viewBookRecord(scanner);
                 break;
             case 6:
-                memberService.viewMemberRecord();
+                memberService.viewMemberRecord(scanner);
                 break;
             case 7:
                 bookService.deleteBookRecord(scanner);
                 break;
             case 8:
-                memberService.deleteMemberRecord();
+                memberService.deleteMemberRecord(scanner);
                 break;
             case 9:
                 System.out.println("Exiting the Library Application");

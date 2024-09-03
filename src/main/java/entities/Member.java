@@ -1,9 +1,7 @@
 package entities;
 
 import enums.Social;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +10,9 @@ import java.util.List;
 @Table(name = "members")
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Member {
 
     @Id
@@ -28,6 +29,6 @@ public class Member {
     private Social social;
 
     private int age;
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Loan> loans;
 }
