@@ -139,8 +139,10 @@ public class BookServiceImpl implements BookService {
                 System.out.println("No books on selected genre. Review our genre list and provide a new one" + "\n");
 
             }
-
-           // List<Book> retrievedBooks = bookRepository.getFilteredBooksByGenre(desiredGenre);
         }
+        List<Book> retrievedBooks = bookRepository.filteredBooksByGenre(desiredGenre);
+        System.out.println("test");
+        retrievedBooks.forEach(System.out::println);
+
     }
 }

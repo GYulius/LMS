@@ -26,7 +26,8 @@ public class LibraryCli {
         System.out.println("6. View a member record");
         System.out.println("7. Delete a book record");
         System.out.println("8. Delete a member record");
-        System.out.println("9. Exit menu");
+        System.out.println("9. Search book by genre");
+        System.out.println("10. Exit menu");
     }
     private void executeUserChoiceAction(Scanner scanner) {
         int userChoice = Integer.parseInt(scanner.nextLine());
