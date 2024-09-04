@@ -40,12 +40,12 @@ public class BookRepository {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Book Book = session.get(Book.class,id);
+        Book book = session.get(Book.class,id);
 
         session.getTransaction().commit();
         session.close();
 
-        return Book;
+        return book;
     }
 
     public void deleteBook(int id){
@@ -70,14 +70,6 @@ public class BookRepository {
         Query<Book> query = session.createQuery(hql, Book.class);
         query.setParameter("parametru", desiredGenre.name());
         List<Book> returnedBooks = query.getResultList();
-//            try {
-//                desiredGenre = Genre.valueOf(chosenGenre);
-//                System.out.println(desiredGenre + " chosen as genre" + "\n");
-//
-//            } catch (IllegalArgumentException e) {
-//                System.out.println("No books on selected genre. Review our genre list and provide a new one" + "\n");
-//
-//            }
 
         session.getTransaction().commit();
         session.close();

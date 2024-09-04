@@ -2,6 +2,7 @@ package entities;
 
 import enums.Genre;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,6 +29,9 @@ public class Book {
     private Genre genre;
 
     private String description;
+
+    private boolean isLoaned = false;
+
 
     // @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
