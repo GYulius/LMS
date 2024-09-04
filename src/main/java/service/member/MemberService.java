@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public interface MemberService {
     void insertMember(Scanner scanner);
-    void editMemberRecord();
-    void viewMemberRecord();
-    void deleteMemberRecord();
+    void editMemberRecord(Scanner scanner);
+    void viewMemberRecord(Scanner scanner);
+    void deleteMemberRecord(Scanner scanner);
 }

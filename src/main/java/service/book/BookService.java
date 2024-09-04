@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public interface BookService {
     void insertBook(Scanner scanner);
-    void editBookRecord();
-    void viewBookRecord();
-    void deleteBookRecord();
+    void editBookRecord(Scanner scanner);
+    void viewBookRecord(Scanner scanner);
+    void deleteBookRecord(Scanner scanner);
+    void searchBookByGenre(Scanner scanner);
 }
