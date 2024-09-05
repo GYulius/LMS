@@ -37,6 +37,9 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Loan> loans;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
     @Override
     public String toString() {
         return "Book{" +

@@ -4,6 +4,7 @@ import repositories.MemberRepository;
 import service.book.BookServiceImpl;
 import service.loan.LoanServiceImpl;
 import service.member.MemberServiceImpl;
+import service.review.ReviewServiceImpl;
 
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class LibraryCli {
     private final BookServiceImpl bookService = new BookServiceImpl();
     private final MemberServiceImpl memberService = new MemberServiceImpl();
     private final LoanServiceImpl loanService = new LoanServiceImpl();
+    private final ReviewServiceImpl reviewService = new ReviewServiceImpl();
 
     public void startLibraryCli() {
         Scanner scanner = new Scanner(System.in);
@@ -30,7 +32,10 @@ public class LibraryCli {
         System.out.println("8. Delete a member record");
         System.out.println("9. Search book by genre");
         System.out.println("10. Loan book");
-        System.out.println("11. Exit menu");
+        System.out.println("11. Return book");
+        System.out.println("12. Show active loans by member");
+        System.out.println("13. Exit menu");
+        System.out.println(" ");
     }
     private void executeUserChoiceAction(Scanner scanner) {
         int userChoice = Integer.parseInt(scanner.nextLine());
@@ -66,6 +71,16 @@ public class LibraryCli {
                 loanService.loanBook(scanner);
                 break;
             case 11:
+                loanService.returnBook(scanner);
+                break;
+            case 12:
+                loanService.showActiveLoansByMemberId(scanner);
+                break;
+            case 13:
+                reviewService.showReviewsByBookId(scanner);
+
+
+            case 15:
                 System.out.println("Exiting the Library Application");
                 System.exit(0);
                 break;

@@ -32,6 +32,9 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Loan> loans;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Review> reviews;
+
     @Override
     public String toString() {
         return "Member{" +
@@ -42,4 +45,5 @@ public class Member {
                 ", age=" + age +
                 '}';
     }
+
 }

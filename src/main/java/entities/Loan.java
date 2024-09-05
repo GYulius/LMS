@@ -1,8 +1,6 @@
 package entities;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +9,8 @@ import java.time.LocalDate;
 @Table(name = "loans")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Loan {
 
     @Id
