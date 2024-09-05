@@ -5,7 +5,10 @@ import entities.Loan;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import util.HibernateUtil;
+
+import java.util.List;
 
 public class LoanRepository {
 
@@ -46,5 +49,39 @@ public class LoanRepository {
         return loan;
     }
 
+    public Loan findActiveLoanByBookId(int bookId){
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
+        String hql = "SELECT l FROM Loan l WHERE book_id = :parametru AND isReturned = false";
+        Query<Loan> query = session.createQuery(hql, Loan.class);
+        query.setParameter("parametru", bookId);
+
+        Loan activeLoan = query.getSingleResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return activeLoan;
+    }
+
+    public List<Loan> showActiveLoansByMemberId(int memberId) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String hql = "SELECT l FROM Loan l WHERE member_id = :parametru AND isReturned = false";
+        Query<Loan> query = session.createQuery(hql, Loan.class);
+        query.setParameter("parametru", memberId);
+        List<Loan> activeLoansByMember = query.getResultList();
+
+        // Loan activeLoan = query.getSingleResult();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return activeLoansByMember;
+
+    }
 }
