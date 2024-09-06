@@ -2,12 +2,19 @@ package service.member;
 
 import entities.Book;
 import entities.Member;
+import enums.Social;
 import repositories.MemberRepository;
 
 import java.util.Scanner;
 
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository = new MemberRepository();
+
+    public static void displayAllSocials() {
+        for (Social social : Social.values()) {
+            System.out.println(social.toString());
+        }
+    }
 
     @Override
     public void insertMember(Scanner scanner) {
@@ -17,9 +24,33 @@ public class MemberServiceImpl implements MemberService {
         System.out.println("Please enter the last name: ");
         String lastName = scanner.nextLine();
 
+        System.out.println("Please check our social statuses list below and then pick (copy and paste) for the new member: " + "\n");
+        displayAllSocials();
+
+
+        Social social = null;
+
+
+
+        while (social == null) {
+            String chosenSocial = scanner.nextLine();
+            try {
+                social = Social.valueOf(chosenSocial);
+                System.out.println(social + " chosen as social status." + "\n");
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(" Invalid social status. Review our social statuses list and try again." + "\n");
+            }
+        }
+
+        System.out.println("Please enter the age: ");
+        int ageOf = Integer.parseInt(scanner.nextLine());
+
         Member addedmember = Member.builder()
                 .firstName(firstName)
                 .lastName(lastName)
+                .social(social)
+                .age(ageOf)
                 .build();
 
         memberRepository.saveMember(addedmember);

@@ -27,7 +27,7 @@ public class BookServiceImpl implements BookService {
         String author = scanner.nextLine();
 
         displayAllGenres();
-        System.out.println("Please check our genre list and then choose the genre for your book.");
+        System.out.println("Please check our genre list above and then pick (copy and paste) the genre for your book.");
 
         Genre genre = null;
 

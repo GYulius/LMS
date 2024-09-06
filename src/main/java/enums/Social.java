@@ -1,8 +1,12 @@
 package enums;
 
 public enum Social {
+    CHILD,
     TEENAGER,
-    STUDENT,
     ADULT,
-    SENIOR
+    SENIOR,
+    ELEV,
+    STUDENT,
+    SALARIAT,
+    PENSIONAR
 }

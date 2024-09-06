@@ -29,6 +29,7 @@ public class Member {
     private Social social;
 
     private int age;
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Loan> loans;
 

@@ -62,7 +62,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public void returnBook(Scanner scanner) {
 
-        System.out.println("Please provide the book id: ");
+        System.out.println("Please provide the book ID: ");
         int bookId = Integer.parseInt(scanner.nextLine());
 
         Book foundBook = bookRepository.findBookById(bookId);
@@ -89,7 +89,7 @@ public class LoanServiceImpl implements LoanService {
 
     public void showActiveLoansByMemberId(Scanner scanner) {
 
-        System.out.println("Please provide your member record: ");
+        System.out.println("Please provide your member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
 
         Member foundMember = memberRepository.findMemberById(memberId);
@@ -110,9 +110,19 @@ public class LoanServiceImpl implements LoanService {
             System.out.println("Presently no active loans for this member.");
             return;
         }
-        activeLoansFound.forEach(System.out :: println);
+
         System.out.println();
-        System.out.format("%10s%50s%25s", activeLoansFound.get(0), activeLoansFound.get(1), activeLoansFound.get(2));
+        System.out.printf("+--------+---------------------+---------------------+------------------+------------------------------------+---------------------------------------%n");
+        System.out.printf("%-8s | %-19s | %-19s | %-20s | %-30s |%n", "Loan ID", "Loan Date", "Return Date", "Book ID", "Title");
+        System.out.printf("+--------+---------------------+---------------------+------------------+------------------------------------+---------------------------------------%n");
+
+        activeLoansFound.forEach(System.out::println);
+
+        //        for(int i = 1 ; i <= 5; i++){
+//            System.out.println();
+//            activeLoansFound.forEach(System.out :: printf("%8s", activeLoansFound.get(i));
+//        }
+        // System.out.format("%10s%50s%25s", activeLoansFound.get(0), activeLoansFound.get(1), activeLoansFound.get(2));
 
         // Spliterator<Loan> splittedArrays = loanRepository.showActiveLoansByMemberId(memberId).spliterator();
     }
