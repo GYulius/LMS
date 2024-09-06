@@ -1,8 +1,8 @@
 package entities;
 
 import enums.Genre;
+import enums.RatedAt;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,6 +33,9 @@ public class Book {
     private boolean isLoaned = false;
 
     private boolean isReviewed = false;
+
+    @Enumerated(EnumType.STRING)
+    private RatedAt ratedAt;
 
 
     // @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -87,10 +87,10 @@ public class LibraryCli {
                 reviewService.showReviewsByBookId(scanner);
                 break;
             case 15:
-                reviewService.searchBooksByRating(scanner);
+                bookService.searchBooksByRating(scanner);
                 break;
             case 16:
-                reviewService.showTopBooksByRating(scanner);
+                bookService.showTopBooksByRating(scanner);
                 break;
             case 17:
                 System.out.println("Exiting the Library Application");

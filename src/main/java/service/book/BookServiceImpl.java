@@ -2,6 +2,7 @@ package service.book;
 
 import entities.Book;
 import enums.Genre;
+import enums.RatedAt;
 import repositories.BookRepository;
 
 import java.util.List;
@@ -143,6 +144,43 @@ public class BookServiceImpl implements BookService {
         List<Book> retrievedBooks = bookRepository.filteredBooksByGenre(desiredGenre);
         System.out.println("test");
         retrievedBooks.forEach(System.out::println);
+
+    }
+
+
+    @Override
+    public void searchBooksByRating(Scanner scanner) {
+        System.out.println("Please provide the rating (how many stars as 1, 2, 3, 4 or 5) to see which books got it: ");
+
+
+        RatedAt ratedNow = null;
+
+        while (ratedNow == null) {
+            int chosenRating = Integer.parseInt(scanner.nextLine());
+            try {
+                ratedNow = RatedAt.valueOf(String.valueOf(chosenRating));
+                System.out.println(ratedNow + " chosen as rating" + "\n");
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("No books on selected rating. Review our rating options list and try again." + "\n");
+
+            }
+        }
+        List<Book> showBooks = bookRepository.searchBooksByRating(ratedNow);
+        System.out.println("test");
+        showBooks.forEach(System.out::println);
+
+        System.out.println();
+        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+-----%n");
+        System.out.printf("%-12s | %-7s | %-90s |%n", "Book ID", "Title", "Comments");
+        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+----%n");
+
+        showBooks.forEach(System.out::println);
+
+    }
+
+    @Override
+    public void showTopBooksByRating(Scanner scanner) {
 
     }
 }

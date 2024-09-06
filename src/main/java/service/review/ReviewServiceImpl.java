@@ -3,9 +3,12 @@ package service.review;
 import entities.Book;
 import entities.Member;
 import entities.Review;
+import enums.RatedAt;
 import repositories.BookRepository;
 import repositories.MemberRepository;
 import repositories.ReviewRepository;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class ReviewServiceImpl implements ReviewService {
@@ -16,10 +19,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public void saveReview(Scanner scanner) {
-        System.out.println("Please provide your member record: ");
+        System.out.println("Please provide your member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("Please provide the number of the book record you want to review: ");
+        System.out.println("Please provide the ID of the book you want to review: ");
         int bookId = Integer.parseInt(scanner.nextLine());
 
         Member foundMember = memberRepository.findMemberById(memberId);
@@ -33,7 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
             System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
-        System.out.println("Please provide your rating for this book you want to review (1 to 5): ");
+        System.out.println("Please provide your rating for this book you want to review (I, II, III, IV, or V): ");
         int yourRating = Integer.parseInt(scanner.nextLine());
 
         System.out.println("Please provide your comment for this book you want to review: ");
@@ -61,17 +64,39 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public void showReviewsByBookId(Scanner scanner) {
 
+        System.out.println("Please provide the ID of the book you want to se the reviews for: ");
+        int bookId = Integer.parseInt(scanner.nextLine());
+
+        Book foundBook = bookRepository.findBookById(bookId);
+
+        if (foundBook == null) {
+            System.out.println("Book not found, please try again.");
+            return;
+        } else {
+            System.out.println("The following book record has been found:" + "\n" + foundBook);
+        }
+
+        System.out.println("The reviews for the book with ID: " + bookId + " are as follows: ");
+
+        List<Review> reviewsFound = reviewRepository.showReviewsByBookId(bookId);
+
+        if(reviewsFound.isEmpty()) {
+            System.out.println("Presently no reviews yet for this book.");
+            return;
+        }
+
+        System.out.println();
+        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+-----%n");
+        System.out.printf("%-12s | %-7s | %-90s |%n", "Review ID", "Rating", "Comments");
+        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+----%n");
+
+        reviewsFound.forEach(System.out::println);
+
     }
 
-    @Override
-    public void searchBooksByRating(Scanner scanner) {
 
-    }
-
-    @Override
-    public void showTopBooksByRating(Scanner scanner) {
-
-    }
 }
-
-// must increment the rating
+// for cases 15 and 16:
+// must increment the reviews / ratings number - isReviewed to be changed from boolean to int
+// OR
+// rating as enum -> returns int ( as I = 1, II = 2...) so top rating is numbersOfMembersWhoRatedTheBook multiplied by 5 :), also the new rating value should add to current rating status
