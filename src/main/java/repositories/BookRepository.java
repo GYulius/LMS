@@ -2,6 +2,7 @@ package repositories;
 
 import entities.Book;
 import enums.Genre;
+import enums.RatedAt;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -77,6 +78,22 @@ public class BookRepository {
         return returnedBooks;
     }
 
+    public List<Book> searchBooksByRating(RatedAt chosenRating) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String hql = "SELECT b FROM Book b left join b.review as r WHERE r.rating = :parametru";
+        Query<Book> query = session.createQuery(hql, Book.class);
+        query.setParameter("parametru", chosenRating.name());
+        List<Book> returnedBooks = query.getResultList();
+        // entityManager.createQuery("SELECT b FROM book b left join b.review as r with r.rating = 'parametru', Book.class).getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return returnedBooks;
+    }
 
 }
 

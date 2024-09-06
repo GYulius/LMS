@@ -34,7 +34,11 @@ public class LibraryCli {
         System.out.println("10. Loan book");
         System.out.println("11. Return book");
         System.out.println("12. Show active loans by member");
-        System.out.println("13. Exit menu");
+        System.out.println("13. Add a review for a book");
+        System.out.println("14. Show the reviews for a book");
+        System.out.println("15. Search books by rating");
+        System.out.println("16. Show top 10 books with the best rating");
+        System.out.println("17. Exit menu");
         System.out.println(" ");
     }
     private void executeUserChoiceAction(Scanner scanner) {
@@ -77,10 +81,18 @@ public class LibraryCli {
                 loanService.showActiveLoansByMemberId(scanner);
                 break;
             case 13:
+                reviewService.saveReview(scanner);
+                break;
+            case 14:
                 reviewService.showReviewsByBookId(scanner);
-
-
+                break;
             case 15:
+                bookService.searchBooksByRating(scanner);
+                break;
+            case 16:
+                bookService.showTopBooksByRating(scanner);
+                break;
+            case 17:
                 System.out.println("Exiting the Library Application");
                 System.exit(0);
                 break;

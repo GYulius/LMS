@@ -52,6 +52,7 @@ public class ReviewRepository {
         return reviewsByBookId;
     }
 
+
     public List<Book> showTopBooksByRating(int rating) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();

@@ -8,9 +8,9 @@ import repositories.LoanRepository;
 import repositories.MemberRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Spliterator;
 
 public class LoanServiceImpl implements LoanService {
 
@@ -36,11 +36,10 @@ public class LoanServiceImpl implements LoanService {
             return;
         } else {
             System.out.println("Hello, " + "\n" + foundMember.getFirstName());
-            System.out.println("The following book record has been found:" + "\n" + foundBook.toString());
+            System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
-        if (foundBook.isLoaned() == true) {
-            // posibilitate de imbunatatire
+        if (foundBook.isLoaned()) {
             System.out.println("Book already loaned.");
             return;
         }
@@ -63,17 +62,17 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public void returnBook(Scanner scanner) {
 
-        System.out.println("Please provide the book id: ");
+        System.out.println("Please provide the book ID: ");
         int bookId = Integer.parseInt(scanner.nextLine());
 
         Book foundBook = bookRepository.findBookById(bookId);
 
         if (foundBook == null) {
             System.out.println("Book not found, please try again.");
-
+            return;
         } else {
 
-            System.out.println("The following book record has been found:" + "\n" + foundBook.toString());
+            System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
         Loan loan = loanRepository.findActiveLoanByBookId(bookId);
@@ -90,7 +89,7 @@ public class LoanServiceImpl implements LoanService {
 
     public void showActiveLoansByMemberId(Scanner scanner) {
 
-        System.out.println("Please provide your member record: ");
+        System.out.println("Please provide your member ID: ");
         int memberId = Integer.parseInt(scanner.nextLine());
 
         Member foundMember = memberRepository.findMemberById(memberId);
@@ -111,17 +110,27 @@ public class LoanServiceImpl implements LoanService {
             System.out.println("Presently no active loans for this member.");
             return;
         }
-        activeLoansFound.forEach(System.out :: println);
+
+        System.out.println();
+        System.out.printf("+--------+---------------------+---------------------+------------------+------------------------------------+---------------------------------------%n");
+        System.out.printf("%-8s | %-19s | %-19s | %-20s | %-30s |%n", "Loan ID", "Loan Date", "Return Date", "Book ID", "Title");
+        System.out.printf("+--------+---------------------+---------------------+------------------+------------------------------------+---------------------------------------%n");
+
+        activeLoansFound.forEach(System.out::println);
+
+        //        for(int i = 1 ; i <= 5; i++){
+//            System.out.println();
+//            activeLoansFound.forEach(System.out :: printf("%8s", activeLoansFound.get(i));
+//        }
+        // System.out.format("%10s%50s%25s", activeLoansFound.get(0), activeLoansFound.get(1), activeLoansFound.get(2));
+
+        // Spliterator<Loan> splittedArrays = loanRepository.showActiveLoansByMemberId(memberId).spliterator();
     }
 
 }
 
 /*
-1. id membru
-2. id book
-3. verificare isLoaned pe Book (true/false) => a. true => se poate returna => update loan return date
+verificare isLoaned pe Book (true/false) => a. true => se poate returna => update loan return date
                                                b. false => no books to return
-
 querry => loanId unde book id = citit and loan.isReturned(false)
-
  */

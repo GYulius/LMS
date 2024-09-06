@@ -1,14 +1,12 @@
 package entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "reviews")
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,4 +29,13 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @Override
+    public String toString() {
+        return "Review{" +
+                "id=" + id +
+                ", rating=" + rating +
+                ", comment=" + comment +
+                '}';
+    }
 }
