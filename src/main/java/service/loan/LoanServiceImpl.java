@@ -8,9 +8,9 @@ import repositories.LoanRepository;
 import repositories.MemberRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Spliterator;
 
 public class LoanServiceImpl implements LoanService {
 
@@ -36,11 +36,10 @@ public class LoanServiceImpl implements LoanService {
             return;
         } else {
             System.out.println("Hello, " + "\n" + foundMember.getFirstName());
-            System.out.println("The following book record has been found:" + "\n" + foundBook.toString());
+            System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
-        if (foundBook.isLoaned() == true) {
-            // posibilitate de imbunatatire
+        if (foundBook.isLoaned()) {
             System.out.println("Book already loaned.");
             return;
         }
@@ -70,10 +69,10 @@ public class LoanServiceImpl implements LoanService {
 
         if (foundBook == null) {
             System.out.println("Book not found, please try again.");
-
+            return;
         } else {
 
-            System.out.println("The following book record has been found:" + "\n" + foundBook.toString());
+            System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
         Loan loan = loanRepository.findActiveLoanByBookId(bookId);
@@ -112,16 +111,16 @@ public class LoanServiceImpl implements LoanService {
             return;
         }
         activeLoansFound.forEach(System.out :: println);
+        System.out.println();
+        System.out.format("%10s%50s%25s", activeLoansFound.get(0), activeLoansFound.get(1), activeLoansFound.get(2));
+
+        // Spliterator<Loan> splittedArrays = loanRepository.showActiveLoansByMemberId(memberId).spliterator();
     }
 
 }
 
 /*
-1. id membru
-2. id book
-3. verificare isLoaned pe Book (true/false) => a. true => se poate returna => update loan return date
+verificare isLoaned pe Book (true/false) => a. true => se poate returna => update loan return date
                                                b. false => no books to return
-
 querry => loanId unde book id = citit and loan.isReturned(false)
-
  */

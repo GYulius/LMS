@@ -32,6 +32,8 @@ public class Book {
 
     private boolean isLoaned = false;
 
+    private boolean isReviewed = false;
+
 
     // @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
