@@ -1,5 +1,6 @@
 package entities;
 
+import enums.RatedAt;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,7 +18,8 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int rating;
+    @Enumerated(EnumType.STRING)
+    private RatedAt rating;
 
     private String comment;
 

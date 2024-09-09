@@ -13,6 +13,12 @@ import java.util.Scanner;
 
 public class ReviewServiceImpl implements ReviewService {
 
+    public static void displayAllRatings() {
+        for (RatedAt rating : RatedAt.values()) {
+            System.out.println(rating.toString());
+        }
+    }
+
     private final BookRepository bookRepository = new BookRepository();
     private final MemberRepository memberRepository = new MemberRepository();
     private final ReviewRepository reviewRepository = new ReviewRepository();
@@ -36,8 +42,23 @@ public class ReviewServiceImpl implements ReviewService {
             System.out.println("The following book record has been found:" + "\n" + foundBook);
         }
 
-        System.out.println("Please provide your rating for this book you want to review (I, II, III, IV, or V): ");
-        int yourRating = Integer.parseInt(scanner.nextLine());
+        displayAllRatings();
+        System.out.println("Please provide your rating from above for this book you want to review: ");
+        RatedAt ratedAt = RatedAt.valueOf(scanner.nextLine());
+
+        ratedAt = null;
+
+        while (ratedAt == null) {
+            String chosenRating = scanner.nextLine();
+            try {
+                ratedAt = RatedAt.valueOf(chosenRating);
+                System.out.println(ratedAt + " chosen as rating" + "\n");
+
+            } catch (IllegalArgumentException e) {
+                System.out.println(" Invalid rating. Review our rating list and provide a new one" + "\n");
+
+            }
+        }
 
         System.out.println("Please provide your comment for this book you want to review: ");
         String yourComment = scanner.nextLine();
@@ -45,7 +66,7 @@ public class ReviewServiceImpl implements ReviewService {
         Review review = Review.builder()
                 .member(foundMember)
                 .book(foundBook)
-                .rating(yourRating)
+                .rating(ratedAt)
                 .comment(yourComment)
                 .build();
 
