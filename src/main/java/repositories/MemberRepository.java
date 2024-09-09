@@ -1,6 +1,5 @@
 package repositories;
 
-import entities.Book;
 import entities.Member;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

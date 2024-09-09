@@ -142,7 +142,6 @@ public class BookServiceImpl implements BookService {
             }
         }
         List<Book> retrievedBooks = bookRepository.filteredBooksByGenre(desiredGenre);
-        System.out.println("test");
         retrievedBooks.forEach(System.out::println);
 
     }
@@ -167,20 +166,28 @@ public class BookServiceImpl implements BookService {
             }
         }
         List<Book> showBooks = bookRepository.searchBooksByRating(ratedNow.name());
-        System.out.println("test");
         showBooks.forEach(System.out::println);
 
         System.out.println();
-        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+-----%n");
-        System.out.printf("%-12s | %-7s | %-90s |%n", "Book ID", "Title", "Comments");
-        System.out.printf("+------------+---------+---------------------------------------------------------------------------------------------------------------+----%n");
+        System.out.printf("+------------+-------------------------+-----------------------------------------------------------------------------------+-----%n");
+        System.out.printf("%-12s | %-23s | %-16s | %-20s | %-20s |%n", "Book ID", "Title", "Author", "Genre", "Description");
+        System.out.printf("+------------+-------------------------+-----------------------------------------------------------------------------------+----%n");
 
         showBooks.forEach(System.out::println);
 
     }
 
     @Override
-    public void showTopBooksByRating(Scanner scanner) {
+    public void showTopBooksByRating() {
 
+        List<Book> showBooks = bookRepository.showTopBooksByRating();
+        showBooks.forEach(System.out::println);
+
+        System.out.println();
+        System.out.printf("+------------+-------------------------+-----------------------------------------------------------------------------------+-----%n");
+        System.out.printf("%-12s | %-23s | %-16s | %-20s | %-20s |%n", "Book ID", "Title", "Author", "Genre", "Description");
+        System.out.printf("+------------+-------------------------+-----------------------------------------------------------------------------------+----%n");
+
+        showBooks.forEach(System.out::println);
     }
 }

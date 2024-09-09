@@ -1,7 +1,6 @@
 package repositories;
 
 import entities.Book;
-import entities.Review;
 import enums.Genre;
 import enums.RatedAt;
 import org.hibernate.Session;
@@ -86,13 +85,10 @@ public class BookRepository {
 
         RatedAt testRating = RatedAt.valueOf(whichRating);
 
-// "SELECT (b) FROM book b INNER JOIN review r ON b.id = r.book_id WHERE r.rating = :parametru"
-        // "SELECT b FROM book b JOIN review r ON r b.id = r.book_id WHERE r.rating = :parametru";
         String hql = "SELECT b FROM Book b JOIN b.reviews r WHERE r.rating = :parametru";
         Query<Book> query = session.createQuery(hql, Book.class);
         query.setParameter("parametru", testRating);
         List<Book> showBooks = query.getResultList();
-        // entityManager.createQuery("SELECT b FROM book b left join b.review as r with r.rating = 'parametru', Book.class).getResultList();
 
         session.getTransaction().commit();
         session.close();
@@ -102,22 +98,20 @@ public class BookRepository {
 
 
 
-    public List<Book> showTopBooksByRating(int rating) {
+    public List<Book> showTopBooksByRating() {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String hql = "SELECT b FROM Book b WHERE review.rating = 5 ORDER BY book.title LIMIT 10";
+        String hql = "SELECT b FROM Book b JOIN b.reviews r ORDER BY b.ratedAt DESC";
         Query<Book> query = session.createQuery(hql, Book.class);
-        List<Book> bestRatedBooks = query.getResultList();
+        List<Book> bestRatedBooks = query.setMaxResults(3).getResultList();
 
         session.getTransaction().commit();
         session.close();
 
         return bestRatedBooks;
     }
-
-
 }
 
 

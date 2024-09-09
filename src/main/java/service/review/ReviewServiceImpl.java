@@ -44,9 +44,7 @@ public class ReviewServiceImpl implements ReviewService {
 
         displayAllRatings();
         System.out.println("Please provide your rating from above for this book you want to review: ");
-        RatedAt ratedAt = RatedAt.valueOf(scanner.nextLine());
-
-        ratedAt = null;
+        RatedAt ratedAt = null;
 
         while (ratedAt == null) {
             String chosenRating = scanner.nextLine();
@@ -76,11 +74,6 @@ public class ReviewServiceImpl implements ReviewService {
 
         System.out.println("The book with ID: " + bookId + " was reviewed successfully.");
     }
-
-//    @Override    -- OOS
-//    public void updateReview(Scanner scanner) {
-//
-//    }
 
     @Override
     public void showReviewsByBookId(Scanner scanner) {
@@ -114,10 +107,4 @@ public class ReviewServiceImpl implements ReviewService {
         reviewsFound.forEach(System.out::println);
 
     }
-
-
 }
-// for cases 15 and 16:
-// must increment the reviews / ratings number - isReviewed to be changed from boolean to int
-// OR
-// rating as enum -> returns int ( as I = 1, II = 2...) so top rating is numbersOfMembersWhoRatedTheBook multiplied by 5 :), also the new rating value should add to current rating status

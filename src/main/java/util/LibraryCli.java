@@ -1,6 +1,5 @@
 package util;
 
-import repositories.MemberRepository;
 import service.book.BookServiceImpl;
 import service.loan.LoanServiceImpl;
 import service.member.MemberServiceImpl;
@@ -90,7 +89,7 @@ public class LibraryCli {
                 bookService.searchBooksByRating(scanner);
                 break;
             case 16:
-                bookService.showTopBooksByRating(scanner);
+                bookService.showTopBooksByRating();
                 break;
             case 17:
                 System.out.println("Exiting the Library Application");

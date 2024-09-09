@@ -39,6 +39,7 @@ public class Book {
 
 
     // @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // as another method to solve the lazy initialization exception
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Loan> loans;
 

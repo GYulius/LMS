@@ -1,6 +1,5 @@
 package repositories;
 
-import entities.Book;
 import entities.Loan;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -75,8 +74,6 @@ public class LoanRepository {
         Query<Loan> query = session.createQuery(hql, Loan.class);
         query.setParameter("parametru", memberId);
         List<Loan> activeLoansByMember = query.getResultList();
-
-        // Loan activeLoan = query.getSingleResult();
 
         session.getTransaction().commit();
         session.close();

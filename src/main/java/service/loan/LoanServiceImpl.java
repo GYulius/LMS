@@ -10,13 +10,13 @@ import repositories.MemberRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Spliterator;
 
 public class LoanServiceImpl implements LoanService {
 
     private final BookRepository bookRepository = new BookRepository();
     private final MemberRepository memberRepository = new MemberRepository();
     private final LoanRepository loanRepository = new LoanRepository();
+    private final int RETURN_DAYS_THRESHOLD = 14;
 
     @Override
     public void loanBook(Scanner scanner) {
@@ -48,8 +48,10 @@ public class LoanServiceImpl implements LoanService {
                 .member(foundMember)
                 .book(foundBook)
                 .loanDate(LocalDate.now())
-                .returnDate(LocalDate.now().plusDays(14))
+                .returnDate(LocalDate.now().plusDays(RETURN_DAYS_THRESHOLD))
                 .build();
+
+        // improved daysToAdd not to be hardcoded with a class in util: RETURNED_DAYS_THRESHOLD
 
         loanRepository.saveLoan(loan);
         foundBook.setLoaned(true);
@@ -117,20 +119,5 @@ public class LoanServiceImpl implements LoanService {
         System.out.printf("+--------+---------------------+---------------------+------------------+------------------------------------+---------------------------------------%n");
 
         activeLoansFound.forEach(System.out::println);
-
-        //        for(int i = 1 ; i <= 5; i++){
-//            System.out.println();
-//            activeLoansFound.forEach(System.out :: printf("%8s", activeLoansFound.get(i));
-//        }
-        // System.out.format("%10s%50s%25s", activeLoansFound.get(0), activeLoansFound.get(1), activeLoansFound.get(2));
-
-        // Spliterator<Loan> splittedArrays = loanRepository.showActiveLoansByMemberId(memberId).spliterator();
     }
-
 }
-
-/*
-verificare isLoaned pe Book (true/false) => a. true => se poate returna => update loan return date
-                                               b. false => no books to return
-querry => loanId unde book id = citit and loan.isReturned(false)
- */

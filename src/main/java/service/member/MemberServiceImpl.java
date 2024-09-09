@@ -1,10 +1,8 @@
 package service.member;
 
-import entities.Book;
 import entities.Member;
 import enums.Social;
 import repositories.MemberRepository;
-
 import java.util.Scanner;
 
 public class MemberServiceImpl implements MemberService {
