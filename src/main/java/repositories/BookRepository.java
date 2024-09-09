@@ -1,6 +1,7 @@
 package repositories;
 
 import entities.Book;
+import entities.Review;
 import enums.Genre;
 import enums.RatedAt;
 import org.hibernate.Session;
@@ -83,7 +84,7 @@ public class BookRepository {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String hql = "SELECT b FROM Book b left join b.review as r WHERE r.rating = :parametru";
+        String hql = "SELECT b FROM book b left join b.review as r WHERE r.rating = :parametru";
         Query<Book> query = session.createQuery(hql, Book.class);
         query.setParameter("parametru", chosenRating.name());
         List<Book> returnedBooks = query.getResultList();
@@ -94,6 +95,24 @@ public class BookRepository {
 
         return returnedBooks;
     }
+
+
+
+    public List<Book> showTopBooksByRating(int rating) {
+        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        String hql = "SELECT b FROM Book b WHERE review.rating = 5 ORDER BY book.title LIMIT 10";
+        Query<Book> query = session.createQuery(hql, Book.class);
+        List<Book> bestRatedBooks = query.getResultList();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return bestRatedBooks;
+    }
+
 
 }
 

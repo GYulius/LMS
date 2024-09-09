@@ -150,13 +150,13 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void searchBooksByRating(Scanner scanner) {
-        System.out.println("Please provide the rating (how many stars as 1, 2, 3, 4 or 5) to see which books got it: ");
+        System.out.println("Please provide the rating (as I, II, III, IV or V) to see which books got it: ");
 
 
         RatedAt ratedNow = null;
 
         while (ratedNow == null) {
-            int chosenRating = Integer.parseInt(scanner.nextLine());
+            RatedAt chosenRating = RatedAt.valueOf(scanner.nextLine());
             try {
                 ratedNow = RatedAt.valueOf(String.valueOf(chosenRating));
                 System.out.println(ratedNow + " chosen as rating" + "\n");

@@ -1,7 +1,5 @@
 package repositories;
 
-import entities.Book;
-import entities.Loan;
 import entities.Review;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -52,20 +50,5 @@ public class ReviewRepository {
         return reviewsByBookId;
     }
 
-
-    public List<Book> showTopBooksByRating(int rating) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        String hql = "SELECT b FROM Book b WHERE review.rating = 5 ORDER BY book.title LIMIT 10";
-        Query<Book> query = session.createQuery(hql, Book.class);
-        List<Book> bestRatedBooks = query.getResultList();
-
-        session.getTransaction().commit();
-        session.close();
-
-        return bestRatedBooks;
-    }
 
 }
