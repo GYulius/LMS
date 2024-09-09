@@ -156,9 +156,9 @@ public class BookServiceImpl implements BookService {
         RatedAt ratedNow = null;
 
         while (ratedNow == null) {
-            RatedAt chosenRating = RatedAt.valueOf(scanner.nextLine());
+            String chosenRating = scanner.nextLine();
             try {
-                ratedNow = RatedAt.valueOf(String.valueOf(chosenRating));
+                ratedNow = RatedAt.valueOf(chosenRating);
                 System.out.println(ratedNow + " chosen as rating" + "\n");
 
             } catch (IllegalArgumentException e) {
@@ -166,7 +166,7 @@ public class BookServiceImpl implements BookService {
 
             }
         }
-        List<Book> showBooks = bookRepository.searchBooksByRating(ratedNow);
+        List<Book> showBooks = bookRepository.searchBooksByRating(ratedNow.name());
         System.out.println("test");
         showBooks.forEach(System.out::println);
 

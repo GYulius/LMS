@@ -79,21 +79,25 @@ public class BookRepository {
         return returnedBooks;
     }
 
-    public List<Book> searchBooksByRating(RatedAt chosenRating) {
+    public List<Book> searchBooksByRating(String whichRating) {
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        String hql = "SELECT b FROM book b left join b.review as r WHERE r.rating = :parametru";
+        RatedAt testRating = RatedAt.valueOf(whichRating);
+
+// "SELECT (b) FROM book b INNER JOIN review r ON b.id = r.book_id WHERE r.rating = :parametru"
+        // "SELECT b FROM book b JOIN review r ON r b.id = r.book_id WHERE r.rating = :parametru";
+        String hql = "SELECT b FROM Book b JOIN b.reviews r WHERE r.rating = :parametru";
         Query<Book> query = session.createQuery(hql, Book.class);
-        query.setParameter("parametru", chosenRating.name());
-        List<Book> returnedBooks = query.getResultList();
+        query.setParameter("parametru", testRating);
+        List<Book> showBooks = query.getResultList();
         // entityManager.createQuery("SELECT b FROM book b left join b.review as r with r.rating = 'parametru', Book.class).getResultList();
 
         session.getTransaction().commit();
         session.close();
 
-        return returnedBooks;
+        return showBooks;
     }
 
 
